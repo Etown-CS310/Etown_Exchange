@@ -1,1 +1,32 @@
+# Node modules
+etown_exchange/node_modules/
 
+# Build output inside CRA app
+etown_exchange/build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables inside CRA app
+etown_exchange/.env
+etown_exchange/.env.local
+etown_exchange/.env.development.local
+etown_exchange/.env.test.local
+etown_exchange/.env.production.local
+
+# Editor folders / files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# TypeScript cache inside CRA app
+etown_exchange/*.tsbuildinfo
