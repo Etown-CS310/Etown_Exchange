@@ -1,17 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import '../styles/Navbar.css';
 
-function Navbar() {
+const Navbar: React.FC = () => {
     return(
-        <nav>
-            {/* Etown logo? */}
-
-            {/* Nav links */}
-            <div>
-                <Link to="./"> Placeholder</Link>
-            </div>
+        <nav className="navbar">
+            <div>Etown Exchange</div>
         </nav>
     );
-}
+};
+
+
 
 export default Navbar;
