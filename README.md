@@ -36,4 +36,13 @@ It allows users to create accounts, post listings with images and prices, and co
 1. Clone the repo:
    ```bash
    git clone https://github.com/your-username/etown-exchange.git
-   cd etown-exchange
+   
+2. Navigate to project folder:
+  cd etown-exchange
+
+3. Install dependencies:
+  npm install
+
+4. Run:
+  npm start
+
