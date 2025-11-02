@@ -14,13 +14,13 @@ It allows users to create accounts, post listings with images and prices, and co
 - **Messaging**  
   Chat directly with buyers and sellers using Firestore.
 
-- **Responsive UI**  
-  Built with Tailwind CSS for a clean, modern design that works across devices.
+-- **Responsive UI**  
+  Built with plain CSS for a clean, responsive design that works across devices.
 
 ## Tech Stack
 
 - **Frontend:** React + TypeScript  
-- **Styling:** Tailwind CSS  
+-- **Styling:** Plain CSS  
 - **Backend / Database:** Firebase Firestore  
 - **Storage:** Firebase Storage  
 - **Authentication:** Firebase Authentication  
