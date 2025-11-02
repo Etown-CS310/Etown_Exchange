@@ -5,15 +5,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import Navbar from './components/Navbar';
+import ListingPage from './pages/ListingPage';
 
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<LoginPage />}/>
-        <Route path="/home" element={<HomePage />}/>
+        <Route path="/" element={<HomePage />}/>
+        <Route path="/listing" element={<ListingPage />}/>
       </Routes>
     </Router>
   );

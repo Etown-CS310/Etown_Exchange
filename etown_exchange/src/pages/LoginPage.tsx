@@ -18,7 +18,7 @@ const LoginPage : React.FC = () => {
             return;
         }
         setError("");
-        navigate("./home");
+        // navigate("./home");
     };
 
     
