@@ -1,0 +1,60 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+}
+
+.logo-clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.logo-clickable:hover {
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    background: linear-gradient(135deg, #004B98, #3DB5E6);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.logo-text {
+    color: #0A2240;
+}
+
+/* Size variants */
+.logo-small {
+    font-size: 1rem;
+}
+
+.logo-small .logo-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+}
+
+.logo-medium {
+    font-size: 1.5rem;
+}
+
+.logo-medium .logo-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+}
+
+.logo-large {
+    font-size: 2rem;
+}
+
+.logo-large .logo-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+}
