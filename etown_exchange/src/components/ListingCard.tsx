@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ListingCard.css'; // Import the CSS file
+// import './styles/ListingCard.css'; // Import the CSS file
 
 type Props = {
     title: string;

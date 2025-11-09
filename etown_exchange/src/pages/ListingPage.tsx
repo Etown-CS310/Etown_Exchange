@@ -1,6 +1,6 @@
 import React from 'react';
 import ListingCard from '../components/ListingCard';
-import '../styles/ListingPage.css';
+import './styles/ListingPage.css';
 
 const ListingPage: React.FC = () => {
      // Placeholder data

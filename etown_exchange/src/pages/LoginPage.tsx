@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 import Button from '../components/Button';
-import '../styles/LoginPage.css';
+import './styles/LoginPage.css';
 
 
 const LoginPage : React.FC = () => {  
