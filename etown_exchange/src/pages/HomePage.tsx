@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
                     <div className="hero-buttons">
                         <Button 
                             text="Get Started"
-                            onClick={() => navigate('/login')}
+                            onClick={() => navigate('/signup')}
                             className="cta-primary"
                         />
                         <Button 
@@ -75,7 +75,7 @@ const HomePage: React.FC = () => {
                 <div className="about-content">
                     <h2>About Etown Exchange</h2>
                     <p>
-                        Etown Exchange is a student-to-student marketplace designed exclusively 
+                        Etown Exchange is a campus marketplace designed exclusively 
                         for the Elizabethtown College community. Whether you're looking for textbooks, 
                         furniture, electronics, or other essentials, our platform makes it easy to 
                         buy and sell within our trusted campus community.
@@ -102,7 +102,7 @@ const HomePage: React.FC = () => {
 
             {/* Footer */}
             <footer className="homepage-footer">
-                <p>&copy; 2024 Etown Exchange. Made for Elizabethtown College students.</p>
+                <p>&copy; 2025 Etown Exchange. Made for Elizabethtown College students.</p>
             </footer>
         </div>
     );
