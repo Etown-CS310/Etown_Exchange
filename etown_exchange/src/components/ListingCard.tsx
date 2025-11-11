@@ -1,20 +1,64 @@
 import React from 'react';
-// import './styles/ListingCard.css'; // Import the CSS file
+import '../styles/ItemCard.css';
 
-type Props = {
+type ItemCardProps = {
+    id: number;
     title: string;
     price: string;
-    desc: string;
+    description: string;
+    image?: string;
+    condition?: string;
+    seller?: string;
+    category?: string;
+    onClick?: () => void;
 };
 
-const ListingCard: React.FC<Props> = ({ title, price, desc }) => {
+const ItemCard: React.FC<ItemCardProps> = ({ 
+    id,
+    title, 
+    price, 
+    description, 
+    image,
+    condition,
+    seller,
+    category,
+    onClick 
+}) => {
     return (
-        <div className="listing-card">
-            <h3>{title}</h3>
-            <p className="price">{price}</p>
-            <p>{desc}</p>
+        <div className="item-card" onClick={onClick}>
+            {/* Image Section */}
+            <div className="item-card-image">
+                {image ? (
+                    <img src={image} alt={title} />
+                ) : (
+                    <div className="item-card-placeholder">
+                        <span>📦</span>
+                    </div>
+                )}
+                {category && <span className="item-card-category">{category}</span>}
+            </div>
+
+            {/* Content Section */}
+            <div className="item-card-content">
+                <h3 className="item-card-title">{title}</h3>
+                <p className="item-card-description">{description}</p>
+                
+                <div className="item-card-details">
+                    {condition && (
+                        <span className="item-card-condition">{condition}</span>
+                    )}
+                    {seller && (
+                        <span className="item-card-seller">by {seller}</span>
+                    )}
+                </div>
+                
+                <div className="item-card-footer">
+                    <span className="item-card-price">{price}</span>
+                    <button className="item-card-btn">View Details</button>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default ListingCard;
+export default ItemCard;
