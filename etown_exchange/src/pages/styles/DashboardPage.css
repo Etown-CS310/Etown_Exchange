@@ -1,0 +1,120 @@
+/* Dashboard Page Container */
+.dashboard-page {
+    min-height: 100vh;
+    background-color: #f9fafb;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    padding-top: 7rem;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0A2240;
+    margin: 0 0 0.5rem 0;
+}
+
+.dashboard-header p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.loading-state p {
+    font-size: 1.125rem;
+    color: #6b7280;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #0A2240;
+    margin: 0 0 0.5rem 0;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0 0 2rem 0;
+}
+
+.cta-button {
+    background-color: #004B98;
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #003d7a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 75, 152, 0.3);
+}
+
+/* Listings Grid */
+.listings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 640px) {
+    .listings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .listings-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .listings-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+}

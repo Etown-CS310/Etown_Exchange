@@ -7,18 +7,12 @@ import ProtectedRoute from './auth/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
-
-// import ListingPage from './pages/ListingPage';
+import DashboardPage from './pages/DashboardPage';
+import CreateListing from './pages/CreateListing';
 
 
 const App: React.FC = () => {
   return (
-    // <Router>
-    //   <Routes>
-    //     <Route path="/" element={<HomePage />}/>
-    //     {/* <Route path="/listing" element={<ListingPage />}/> */}
-    //   </Routes>
-    // </Router>
     <AuthProvider>
       <Router>
         <Routes>
@@ -28,14 +22,22 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
 
           {/* Protected Routes (user must be logged in and verified) */}
-          {/* <Route 
+          <Route 
             path="/dashboard" 
             element={
               <ProtectedRoute>
                 <DashboardPage />
               </ProtectedRoute>
             } 
-          /> */}
+          />
+          <Route 
+            path="/create-listing" 
+            element={
+              <ProtectedRoute>
+                <CreateListing />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </Router>
     </AuthProvider>
