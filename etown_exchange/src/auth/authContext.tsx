@@ -2,7 +2,7 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import { User, onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
 import {auth} from '../firebase/firebaseConfig';
 
-// Define the shape of our Auth Context
+
 interface AuthContextType {
     currentUser: User | null;
     loading: boolean;
@@ -21,7 +21,7 @@ export const useAuth = () => {
     return context;
 };
 
-// AuthProvider component that wraps your app
+// AuthProvider component that wraps the app
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
