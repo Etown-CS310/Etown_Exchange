@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Button from '../components/Button';
+import Footer from '../components/Footer';
 import './styles/CreateListing.css';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -217,6 +218,7 @@ const CreateListing: React.FC = () => {
                     </div>
                 </form>
             </div>
+            <Footer />
         </div>
     );
 };

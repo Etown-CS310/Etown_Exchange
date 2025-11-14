@@ -1,5 +1,5 @@
 /* Auth Page Container */
-.auth-page {
+.auth-page-content {
     min-height: 100vh;
     display: flex;
     flex-direction: column;

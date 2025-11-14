@@ -233,15 +233,6 @@ body {
     color: #6b7280;
 }
 
-/* Footer */
-.homepage-footer {
-    background-color: #0A2240;
-    color: #C8C8C8;
-    text-align: center;
-    padding: 2rem;
-    margin-top: auto;
-}
-
 /* Responsive Design */
 @media (min-width: 768px) {
     .steps-container {

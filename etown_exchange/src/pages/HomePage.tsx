@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Logo from '../components/Logo';
+import Footer from '../components/Footer';
 import './styles/Homepage.css';
 
 const HomePage: React.FC = () => {
@@ -99,11 +100,7 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Footer */}
-            <footer className="homepage-footer">
-                <p>&copy; 2025 Etown Exchange. Made for Elizabethtown College students.</p>
-            </footer>
+            <Footer />
         </div>
     );
 };

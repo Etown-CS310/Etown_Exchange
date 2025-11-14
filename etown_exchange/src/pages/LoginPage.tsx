@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
+import Footer from '../components/Footer';
 import './styles/AuthPages.css';
 
 const LoginPage: React.FC = () => {
@@ -73,7 +74,7 @@ const LoginPage: React.FC = () => {
 
     return (
         <div className="auth-page">
-            {/* Logo at top - clickable to return home */}
+            <div className="auth-page-content">
             <div className="auth-logo">
                 <Logo size="large" onClick={() => navigate('/')} />
             </div>
@@ -130,7 +131,7 @@ const LoginPage: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Optional: Remember Me and Forgot Password */}
+                    {/* TODO: Remember Me and Forgot Password (lol) */}
                     <div className="form-options">
                         <label className="remember-me">
                             <input type="checkbox" />
@@ -154,6 +155,9 @@ const LoginPage: React.FC = () => {
                     New to Etown Exchange? <Link to="/signup">Create an account</Link>
                 </p>
             </div>
+            </div>
+            
+            <Footer />
         </div>
     );
 };

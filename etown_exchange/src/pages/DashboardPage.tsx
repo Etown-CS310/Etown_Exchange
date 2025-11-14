@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ItemCard from '../components/ItemCard';
+import Footer from '../components/Footer';
 import './styles/DashboardPage.css';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
@@ -54,10 +55,8 @@ const DashboardPage: React.FC = () => {
 
     return (
         <div className="dashboard-page">
-            {/* Navbar Component */}
             <Navbar />
 
-            {/* Main Content */}
             <div className="dashboard-content">
                 <div className="dashboard-header">
                     <h1>Browse Listings</h1>
@@ -106,6 +105,7 @@ const DashboardPage: React.FC = () => {
                     </div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 };
