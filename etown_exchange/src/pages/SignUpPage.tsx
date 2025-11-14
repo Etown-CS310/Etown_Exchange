@@ -84,7 +84,6 @@ const SignUpPage: React.FC = () => {
 
     return(
         <div className="auth-page">
-            {/* logo at top */}
             <div className="auth-logo">
                 <Logo size="large" onClick={() => navigate('/')}/>
             </div>
@@ -96,7 +95,6 @@ const SignUpPage: React.FC = () => {
 
                 {/* signup form */}
                 <form onSubmit={handleSignup} className="auth-form">
-                    {/* email input */}
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input

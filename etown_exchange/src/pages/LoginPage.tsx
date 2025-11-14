@@ -40,7 +40,6 @@ const LoginPage: React.FC = () => {
             }
 
             // If successful and verified, redirect to dashboard or home
-            // TODO: Replace '/dashboard' with your actual authenticated home page route
             navigate('/dashboard');
 
         } catch (err: any) {
