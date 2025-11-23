@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import DashboardPage from './pages/DashboardPage';
 import CreateListing from './pages/CreateListing';
+import MyListing from './pages/MyListing';
 
 
 const App: React.FC = () => {
@@ -38,6 +39,13 @@ const App: React.FC = () => {
               </ProtectedRoute>
             } 
           />
+          <Route 
+            path="/my-listings"
+            element={
+              <ProtectedRoute>
+                <MyListing />
+              </ProtectedRoute>
+            }/>
         </Routes>
       </Router>
     </AuthProvider>
