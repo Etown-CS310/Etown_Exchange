@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/authContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
-import { db } from '../firebase/firebaseConfig';
+import { collection, query, where, getDocs, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { ref, deleteObject } from 'firebase/storage';
+import { db, storage } from '../firebase/firebaseConfig';
 import MyListingCard from '../components/MyListingCard';
+import ConfirmationModal from '../components/ConfirmationModal';
 
 import './styles/MyListing.css';
 
@@ -28,6 +30,9 @@ const MyListing: React.FC = () => {
     const [listings, setListings] = useState<Listing[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [listingToDelete, setListingToDelete] = useState<Listing | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     // calculate total price
     const totalPrice = useMemo(() => {
@@ -69,6 +74,47 @@ const MyListing: React.FC = () => {
         };
         fetchMyListings();
     }, [currentUser]);
+
+    // delete button click
+    const handleDeleteClick = (listing: Listing) => {
+        setListingToDelete(listing);
+        setDeleteModalOpen(true);
+    }
+
+    // handle deletion
+    const handleConfirmDelete = async () => {
+        if (!listingToDelete) return;
+        setIsDeleting(true);
+        try {
+            const listingDocRef = doc(db, 'listings', listingToDelete.id);
+            await deleteDoc(listingDocRef);
+            if (listingToDelete.image) {
+                try {
+                    const imageRef = ref(storage, listingToDelete.image);
+                    await deleteObject(imageRef);
+                } catch (error) {
+                    console.log('Image deletion failed:', error);
+                }
+            }
+            setListings(currentListings =>
+                currentListings.filter(listing => listing.id !== listingToDelete.id)
+            );
+
+            setDeleteModalOpen(false);
+            setListingToDelete(null);
+        } catch (error) {
+            console.error("Error deleting listing:", error);
+            alert("Failed to delete listing. Please try again");
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    // handle cancel
+    const handleCancelDelete = () => {
+        setDeleteModalOpen(false);
+        setListingToDelete(null);
+    };
 
     return (
         <div className="my-listings-page">
@@ -132,18 +178,24 @@ const MyListing: React.FC = () => {
                                 category={listing.category}
                                 createdAt={listing.createdAt}
                                 onEdit={() => {
-                                    // We'll implement this next
+                                    // implement this next
                                     console.log('Edit clicked for:', listing.id);
                                 }}
-                                onDelete={() => {
-                                    // We'll implement this next
-                                    console.log('Delete clicked for:', listing.id);
-                                }}
+                                onDelete={() => handleDeleteClick(listing)}
                             />
                         ))}
                     </div>
                 )}
-
+                <ConfirmationModal
+                    isOpen={deleteModalOpen}
+                    title="Delete Listing"
+                    message="Are you sure you want to delete this listing?"
+                    itemName={listingToDelete?.title}
+                    onConfirm={handleConfirmDelete}
+                    onCancel={handleCancelDelete}
+                    confirmButtonText="Delete"
+                    cancelButtonText='Cancel'
+                />
 
             </div>
             <Footer />
