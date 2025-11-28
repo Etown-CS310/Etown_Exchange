@@ -177,10 +177,8 @@ const MyListing: React.FC = () => {
                                 condition={listing.condition}
                                 category={listing.category}
                                 createdAt={listing.createdAt}
-                                onEdit={() => {
-                                    // implement this next
-                                    console.log('Edit clicked for:', listing.id);
-                                }}
+                                onEdit={() =>
+                                    navigate(`/edit-listing/${listing.id}`)}
                                 onDelete={() => handleDeleteClick(listing)}
                             />
                         ))}
