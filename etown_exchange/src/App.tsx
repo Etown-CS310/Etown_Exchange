@@ -2,7 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {AuthProvider} from './auth/authContext';
+import { AuthProvider } from './auth/authContext';
 import ProtectedRoute from './auth/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -11,6 +11,7 @@ import DashboardPage from './pages/DashboardPage';
 import CreateListing from './pages/CreateListing';
 import MyListing from './pages/MyListing';
 import EditListing from './pages/EditListing';
+import ProfilePage from './pages/ProfilePage';
 
 
 const App: React.FC = () => {
@@ -19,42 +20,51 @@ const App: React.FC = () => {
       <Router>
         <Routes>
           {/* public routes */}
-          <Route path='/' element={<HomePage />}/>
+          <Route path='/' element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
 
           {/* Protected Routes (user must be logged in and verified) */}
-          <Route 
-            path="/dashboard" 
+          <Route
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <DashboardPage />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/create-listing" 
+          <Route
+            path="/create-listing"
             element={
               <ProtectedRoute>
                 <CreateListing />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
+          <Route
             path="/my-listings"
             element={
               <ProtectedRoute>
                 <MyListing />
               </ProtectedRoute>
-            }/>
+            } />
 
-          <Route 
+          <Route
             path="/edit-listing/:id"
             element={
               <ProtectedRoute>
                 <EditListing />
               </ProtectedRoute>
-            }/>
+            } />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </AuthProvider>
