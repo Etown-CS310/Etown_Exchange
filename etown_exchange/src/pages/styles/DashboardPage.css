@@ -88,6 +88,150 @@
     box-shadow: 0 4px 12px rgba(0, 75, 152, 0.3);
 }
 
+/* Search Section */
+.search-section {
+    margin-bottom: 2rem;
+}
+
+.search-bar {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 3.5rem;
+    border: 2px solid #C8C8C8;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #004B98;
+    box-shadow: 0 0 0 3px rgba(0, 75, 152, 0.1);
+}
+
+.clear-search {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #6b7280;
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.clear-search:hover {
+    background: #4b5563;
+}
+
+.search-results-count {
+    text-align: center;
+    margin-top: 1rem;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.625rem 1.25rem;
+    background: white;
+    border: 2px solid #C8C8C8;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0A2240;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    border-color: #004B98;
+    color: #004B98;
+}
+
+.filter-btn.active {
+    background-color: #004B98;
+    color: white;
+    border-color: #004B98;
+}
+
+/* No Results State */
+.no-results-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.no-results-state h2 {
+    font-size: 1.5rem;
+    color: #0A2240;
+    margin: 0 0 0.5rem 0;
+}
+
+.no-results-state p {
+    color: #6b7280;
+    margin: 0 0 1.5rem 0;
+}
+
+.clear-search-btn {
+    background-color: #004B98;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clear-search-btn:hover {
+    background-color: #003d7a;
+}
+
 /* Listings Grid */
 .listings-grid {
     display: grid;
