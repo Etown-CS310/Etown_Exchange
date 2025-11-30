@@ -6,19 +6,8 @@ import Footer from '../components/Footer';
 import './styles/DashboardPage.css';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
+import { Listing } from '../types/listing';
 
-interface Listing {
-    id: string;
-    title: string;
-    price: string;
-    description: string;
-    image?: string;
-    condition?: string;
-    category?: string;
-    seller?: string;
-    userId: string;
-    createdAt: any;
-}
 
 const DashboardPage: React.FC = () => {
     const navigate = useNavigate();

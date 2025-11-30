@@ -8,21 +8,8 @@ import { ref, deleteObject } from 'firebase/storage';
 import { db, storage } from '../firebase/firebaseConfig';
 import MyListingCard from '../components/MyListingCard';
 import ConfirmationModal from '../components/ConfirmationModal';
-
+import { Listing } from '../types/listing';
 import './styles/MyListing.css';
-
-interface Listing {
-    id: string;
-    title: string;
-    price: string;
-    description: string;
-    image?: string;
-    condition?: string;
-    category?: string;
-    seller?: string;
-    userId: string;
-    createdAt: any;
-}
 
 const MyListing: React.FC = () => {
     const navigate = useNavigate();
