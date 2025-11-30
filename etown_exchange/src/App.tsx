@@ -12,6 +12,7 @@ import CreateListing from './pages/CreateListing';
 import MyListing from './pages/MyListing';
 import EditListing from './pages/EditListing';
 import ProfilePage from './pages/ProfilePage';
+import ItemDetailPage from './pages/ItemDetailPage';
 
 
 const App: React.FC = () => {
@@ -62,6 +63,15 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute>
                 <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route 
+            path="/item/:id"
+            element={
+              <ProtectedRoute>
+                <ItemDetailPage />
               </ProtectedRoute>
             }
           />
