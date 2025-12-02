@@ -11,7 +11,8 @@ import DashboardPage from './pages/DashboardPage';
 import CreateListing from './pages/CreateListing';
 import MyListing from './pages/MyListing';
 import EditListing from './pages/EditListing';
-import ProfilePage from './pages/ProfilePage';
+import EditProfile from './pages/EditProfile';
+import ProfileView from './pages/ProfileView';
 import ItemDetailPage from './pages/ItemDetailPage';
 
 
@@ -62,11 +63,18 @@ const App: React.FC = () => {
             path="/profile"
             element={
               <ProtectedRoute>
-                <ProfilePage />
+                <ProfileView />
               </ProtectedRoute>
             }
           />
-
+          <Route
+            path="/edit-profile"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
+          />
           <Route 
             path="/item/:id"
             element={

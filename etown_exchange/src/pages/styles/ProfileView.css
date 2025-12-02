@@ -1,0 +1,343 @@
+/* Profile View Page */
+.profile-view-page {
+    min-height: 100vh;
+    background-color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+}
+
+.profile-view-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    flex: 1;
+}
+
+/* Profile Header Section */
+.profile-header-section {
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar-large {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 75, 152, 0.2);
+    flex-shrink: 0;
+}
+
+.profile-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    font-size: 4rem;
+    color: #004B98;
+}
+
+.profile-header-info {
+    flex: 1;
+}
+
+.profile-header-info h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0A2240;
+    margin: 0 0 0.5rem 0;
+}
+
+.profile-email {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin: 0.25rem 0;
+}
+
+.member-since {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0.25rem 0 1.5rem 0;
+}
+
+.edit-profile-btn {
+    background-color: #004B98;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #003d7a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 75, 152, 0.3);
+}
+
+/* Profile Details Grid */
+.profile-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.detail-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detail-card h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #0A2240;
+    margin: 0 0 1rem 0;
+    border-bottom: 2px solid #3DB5E6;
+    padding-bottom: 0.5rem;
+}
+
+.detail-card p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Contact Info List */
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+}
+
+.contact-item span:last-child {
+    color: #0A2240;
+    font-weight: 500;
+}
+
+/* Meeting Location */
+.meeting-location {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #e0f2fe;
+    border-radius: 8px;
+}
+
+.location-icon {
+    font-size: 1.5rem;
+}
+
+.meeting-location span:last-child {
+    color: #0A2240;
+    font-weight: 600;
+}
+
+/* Favorites Section */
+.favorites-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.favorites-section h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #0A2240;
+    margin: 0 0 1.5rem 0;
+}
+
+/* Empty Favorites State */
+.empty-favorites {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.empty-favorites p {
+    font-size: 1.125rem;
+    color: #0A2240;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.empty-subtext {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
+
+.browse-btn {
+    background-color: #E1261C;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.browse-btn:hover {
+    background-color: #c41e16;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(225, 38, 28, 0.3);
+}
+
+/* Favorites Grid */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.favorite-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.favorite-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 75, 152, 0.25);
+    border-color: #004B98;
+}
+
+.favorite-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #f3f4f6;
+}
+
+.favorite-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.favorite-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.favorite-image-placeholder span {
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
+.favorite-info {
+    padding: 1rem;
+}
+
+.favorite-info h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0A2240;
+    margin: 0 0 0.5rem 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.favorite-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #E1261C;
+    margin: 0.5rem 0;
+}
+
+.favorite-condition {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #3DB5E6;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Loading States */
+.loading-state,
+.loading-favorites {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.loading-state p,
+.loading-favorites p {
+    font-size: 1.125rem;
+    color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .profile-avatar-large {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-header-info h1 {
+        font-size: 2rem;
+    }
+
+    .profile-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+}
