@@ -370,3 +370,28 @@
         justify-content: center;
     }
 }
+
+.report-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.report-listing-btn {
+    background: transparent;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+    padding: 0.625rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight:600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.report-listing-btn:hover {
+    color: #e1261c;
+    border-color: #e1261c;
+    background: #fef2fe;
+}

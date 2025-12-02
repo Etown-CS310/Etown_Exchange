@@ -8,6 +8,7 @@ import { UserProfile } from '../types/user';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
+import ReportModal from '../components/ReportModal';
 import './styles/ItemDetailPage.css';
 
 const ItemDetailPage: React.FC = () => {
@@ -19,6 +20,7 @@ const ItemDetailPage: React.FC = () => {
     const [seller, setSeller] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [showReportModal, setShowReportModal] = useState(false);
 
     useEffect(() => {
         const fetchListingAndSeller = async () => {
@@ -247,7 +249,23 @@ const ItemDetailPage: React.FC = () => {
                         </div>
                     </div>
                 )}
-
+                {/* button for report modal */}
+                {!isOwner && (
+                    <button
+                        onClick={() => setShowReportModal(true)}
+                        className="report-listing-btn"
+                    >
+                        🚩 Report Listing
+                    </button>
+                )}
+                {/* report modal */}
+                <ReportModal
+                    isOpen={showReportModal}
+                    onClose={() => setShowReportModal(false)}
+                    listingId={listing.id}
+                    listingTitle={listing.title}
+                />
+                
                 {/* if owner, show message */}
                 {isOwner && (
                     <div className="owner-message">
