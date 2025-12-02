@@ -167,8 +167,6 @@
     transform: translateY(-2px);
 }
 
-/* ADD THESE STYLES TO YOUR EXISTING MyListingCard.css */
-
 /* Sold State Styling */
 .my-listing-card.sold {
     opacity: 0.8;
