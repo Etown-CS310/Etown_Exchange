@@ -47,9 +47,6 @@ const Navbar: React.FC = () => {
                 >
                     My Listings
                 </Link>
-                <Link to="/profile" className={location.pathname === '/profile' ? 'nav-link active' : 'nav-link'}>
-                    Profile
-                </Link>
             </div>
 
             {/* right section */}
@@ -57,10 +54,20 @@ const Navbar: React.FC = () => {
                 <span className="user-email">
                     {currentUser?.email}
                 </span>
+
+                <button
+                    onClick={() => navigate('/profile')}
+                    className={`profile-icon-btn ${location.pathname === '/profile' || location.pathname === '/edit-profile' ? 'active' : ''}`}
+                    title="My Profile"
+                >
+                    <span className="profile-icon">👤</span>
+                </button>
+                
                 <Button
                     text="Sign Out"
                     onClick={handleSignOut}
-                    className="sign-out-btn" />
+                    className="sign-out-btn" 
+                />
 
             </div>
         </nav>

@@ -68,6 +68,50 @@
     box-shadow: 0 4px 12px;
 }
 
+/* ADD THESE STYLES TO YOUR EXISTING Navbar.css */
+
+/* Profile Icon Button */
+.profile-icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #004B98;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 0.75rem;
+}
+
+.profile-icon-btn:hover {
+    background: #004B98;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 75, 152, 0.3);
+}
+
+.profile-icon-btn.active {
+    background: #004B98;
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.profile-icon-btn:hover .profile-icon,
+.profile-icon-btn.active .profile-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Adjust navbar-right spacing */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 @media (max-width: 768px){
     .navbar{
         padding: 1rem 1.5rem
@@ -79,5 +123,15 @@
 
     .user-email {
         display: none;
+    }
+
+     .profile-icon-btn {
+        width: 40px;
+        height: 40px;
+        margin: 0 0.5rem;
+    }
+    
+    .profile-icon {
+        font-size: 1.25rem;
     }
 }
