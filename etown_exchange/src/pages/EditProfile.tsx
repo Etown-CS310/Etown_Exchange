@@ -8,9 +8,9 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import { UserProfile } from '../types/user';
-import './styles/ProfilePage.css';
+import './styles/EditProfile.css';
 
-const ProfilePage: React.FC = () => {
+const EditProfile: React.FC = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [instagramHandle, setInstagramHandle] = useState('');
@@ -25,7 +25,7 @@ const ProfilePage: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [profileExists, setProfileExists] = useState(false);
-
+    const navigate = useNavigate();
     const { currentUser } = useAuth();
 
     useEffect(() => {
@@ -145,6 +145,7 @@ const ProfilePage: React.FC = () => {
                 setProfileExists(true);
             }
             alert('Profile saved successfully!');
+            navigate('/profile');
         } catch (error) {
             console.error('Failed to save profile', error);
             alert('Failed to save profile');
@@ -346,4 +347,4 @@ const ProfilePage: React.FC = () => {
     );
 }
 
-export default ProfilePage;
+export default EditProfile;
