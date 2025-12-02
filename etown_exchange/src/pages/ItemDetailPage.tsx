@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
-import {doc, getDoc} from 'firebase/firestore';
-import {db} from '../firebase/firebaseConfig';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { doc, getDoc, collection, query, where, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
+import { db } from '../firebase/firebaseConfig';
 import { useAuth } from '../auth/authContext';
 import { Listing } from '../types/listing';
 import { UserProfile } from '../types/user';
@@ -12,15 +12,19 @@ import ReportModal from '../components/ReportModal';
 import './styles/ItemDetailPage.css';
 
 const ItemDetailPage: React.FC = () => {
-    const {id} = useParams<{id:string}>();
+    const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
-    const {currentUser} = useAuth();
-    
+    const { currentUser } = useAuth();
+
     const [listing, setListing] = useState<Listing | null>(null);
     const [seller, setSeller] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [showReportModal, setShowReportModal] = useState(false);
+
+    const [isFavorited, setIsFavorited] = useState(false);
+    const [favoriteId, setFavoriteId] = useState<string | null>(null);
+    const [favoriteLoading, setFavoriteLoading] = useState(false);
 
     useEffect(() => {
         const fetchListingAndSeller = async () => {
@@ -35,7 +39,7 @@ const ItemDetailPage: React.FC = () => {
                 const listingRef = doc(db, 'listings', id);
                 const listingSnap = await getDoc(listingRef);
 
-                if (!listingSnap.exists()){
+                if (!listingSnap.exists()) {
                     setError('Listing not found');
                     setLoading(false);
                     return;
@@ -52,7 +56,7 @@ const ItemDetailPage: React.FC = () => {
                 const sellerRef = doc(db, 'users', listingData.userId);
                 const sellerSnap = await getDoc(sellerRef);
 
-                if (sellerSnap.exists()){
+                if (sellerSnap.exists()) {
                     setSeller(sellerSnap.data() as UserProfile);
                 }
             } catch (error) {
@@ -64,6 +68,65 @@ const ItemDetailPage: React.FC = () => {
         };
         fetchListingAndSeller();
     }, [id])
+
+    // check if listing is favorited
+    useEffect(() => {
+        const checkIfFavorited = async () => {
+            if (!currentUser || !id) return;
+
+            try {
+                const favoritesRef = collection(db, 'favorites');
+                const q = query(
+                    favoritesRef,
+                    where('userId', '==', currentUser.uid),
+                    where('listingId', '==', id)
+                );
+                const snapshot = await getDocs(q);
+
+                if (!snapshot.empty) {
+                    setIsFavorited(true);
+                    setFavoriteId(snapshot.docs[0].id);
+                }
+            } catch (error) {
+                console.error('Error checking favorite status:', error);
+            }
+        };
+        checkIfFavorited();
+    }, [currentUser, id]);
+
+    // toggle favorite
+    const handleToggleFavorite = async () => {
+        if (!currentUser || !id) {
+            alert('Please sign in to save favorites');
+            return;
+        }
+
+        setFavoriteLoading(true);
+
+        try {
+            if (isFavorited && favoriteId) {
+                // Remove from favorites
+                await deleteDoc(doc(db, 'favorites', favoriteId));
+                setIsFavorited(false);
+                setFavoriteId(null);
+            } else {
+                // Add to favorites
+                const favoritesRef = collection(db, 'favorites');
+                const newFavorite = await addDoc(favoritesRef, {
+                    userId: currentUser.uid,
+                    listingId: id,
+                    createdAt: new Date()
+                });
+                setIsFavorited(true);
+                setFavoriteId(newFavorite.id);
+            }
+        } catch (error) {
+            console.error('Error toggling favorite:', error);
+            alert('Failed to update favorite. Please try again.');
+        } finally {
+            setFavoriteLoading(false);
+        }
+    };
 
     // format posted time
     const getPostedTime = () => {
@@ -108,8 +171,8 @@ const ItemDetailPage: React.FC = () => {
                 <div className="item-detail-content">
                     <div className="error-state">
                         <h2>{error || 'Listing not found'}</h2>
-                        <Button 
-                            text = "Back to Browse"
+                        <Button
+                            text="Back to Browse"
                             onClick={() => navigate('/dashboard')}
                             className="back-btn"
                         />
@@ -132,13 +195,26 @@ const ItemDetailPage: React.FC = () => {
                     >
                         🔙 Back to Browse
                     </button>
-                    {isOwner && (
-                        <Button 
-                            text="Edit Listing"
-                            onClick={() => navigate(`/edit-listing/${listing.id}`)}
-                            className="edit-button"
-                        />
-                    )}
+                    <div className="header-actions">
+                        {!isOwner && (
+                            <button
+                                onClick={handleToggleFavorite}
+                                disabled={favoriteLoading}
+                                className={`favorite-button ${isFavorited ? 'favorited' : ''}`}
+                                title={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
+                            >
+                                {isFavorited ? '❤️' : '🤍'} {isFavorited ? 'Saved' : 'Save'}
+                            </button>
+                        )}
+
+                        {isOwner && (
+                            <Button
+                                text="Edit Listing"
+                                onClick={() => navigate(`/edit-listing/${listing.id}`)}
+                                className="edit-button"
+                            />
+                        )}
+                    </div>
                 </div>
 
                 {/* main content */}
@@ -146,7 +222,7 @@ const ItemDetailPage: React.FC = () => {
                     {/* left side image */}
                     <div className="detail-image-section">
                         {listing.image ? (
-                            <img src={listing.image} alt={listing.title}/>
+                            <img src={listing.image} alt={listing.title} />
                         ) : (
                             <div className="detail-image-placeholder">
                                 <span>📦</span>
@@ -265,7 +341,7 @@ const ItemDetailPage: React.FC = () => {
                     listingId={listing.id}
                     listingTitle={listing.title}
                 />
-                
+
                 {/* if owner, show message */}
                 {isOwner && (
                     <div className="owner-message">
