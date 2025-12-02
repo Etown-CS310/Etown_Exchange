@@ -30,3 +30,6 @@ etown_exchange/.env.production.local
 
 # TypeScript cache inside CRA app
 etown_exchange/*.tsbuildinfo
+
+# Firebase/Cloud Storage configuration files
+etown_exchange/cors.json

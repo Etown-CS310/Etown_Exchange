@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 import './styles/CreateListing.css';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../firebase/firebaseConfig';
 import { useAuth } from '../auth/authContext';
 
@@ -43,13 +43,56 @@ const CreateListing: React.FC = () => {
     setLoading(true);
 
     try {
+        console.log('CreateListing: currentUser before upload:', currentUser ? { uid: currentUser.uid, email: currentUser.email } : null);
         let imageUrl = '';
 
         // Upload image if exists
         if (image) {
-            const imageRef = ref(storage, `listings/${Date.now()}_${image.name}`);
-            await uploadBytes(imageRef, image);
-            imageUrl = await getDownloadURL(imageRef);
+            // Require authentication for uploads (storage rules often require auth)
+            if (!currentUser) {
+                throw new Error('You must be signed in to upload images.');
+            }
+
+            // Basic client-side file size guard (5MB)
+            const MAX_BYTES = 5 * 1024 * 1024;
+            if (image.size > MAX_BYTES) {
+                throw new Error('Image file is too large. Max size is 5MB.');
+            }
+
+            const imageRef = ref(storage, `listings/${currentUser.uid}/${Date.now()}_${image.name}`);
+
+            // Provide metadata so storage knows the content type
+            const metadata = { contentType: image.type };
+
+            // Use resumable upload so we can get better errors and progress if needed
+            const uploadTask = uploadBytesResumable(imageRef, image, metadata);
+
+            // Wrap the upload in a promise to await completion and capture errors
+            imageUrl = await new Promise<string>((resolve, reject) => {
+                uploadTask.on(
+                    'state_changed',
+                    // progress handler (unused for now)
+                    () => {},
+                    // error handler
+                    (uploadError) => {
+                        // Log detailed server response if available
+                        const serverResp = (uploadError as any)?.serverResponse || (uploadError as any)?.customData || null;
+                        console.error('Firebase Storage upload error:', uploadError, 'serverResponse:', serverResp);
+                        // Re-throw so outer catch can handle user-facing messaging
+                        reject(uploadError);
+                    },
+                    // success handler
+                    async () => {
+                        try {
+                            const url = await getDownloadURL(imageRef);
+                            resolve(url);
+                        } catch (err) {
+                            console.error('Error getting download URL:', err);
+                            reject(err);
+                        }
+                    }
+                );
+            });
         }
 
         // Save listing to Firestore
@@ -69,7 +112,12 @@ const CreateListing: React.FC = () => {
         navigate('/dashboard');
     } catch (error) {
         console.error('Error creating listing:', error);
-        alert('Failed to post listing. Please try again.');
+        const errAny = error as any;
+        const code = errAny?.code || errAny?.name || 'unknown';
+        const serverResp = errAny?.serverResponse || errAny?.customData || null;
+        console.error('Upload/server response:', serverResp);
+
+        alert(`Failed to post listing. (${code}) ${serverResp && serverResp.error ? serverResp.error.message : ''}` || 'Failed to post listing. Please try again.');
     } finally {
         setLoading(false);
     }
