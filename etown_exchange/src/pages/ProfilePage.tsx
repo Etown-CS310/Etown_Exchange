@@ -8,7 +8,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import { UserProfile } from '../types/user';
-import './styles/UserProfile.css';
+import './styles/ProfilePage.css';
 
 const ProfilePage: React.FC = () => {
     const [firstName, setFirstName] = useState('');
