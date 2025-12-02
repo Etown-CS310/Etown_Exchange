@@ -11,8 +11,10 @@ type MyListingCardProps = {
     condition?: string,
     category?: string,
     createdAt: Timestamp,
+    sold?: boolean;
     onEdit: () => void,
     onDelete: () => void
+    onToggleSold: () => void
 }
 
 const MyListingCard: React.FC<MyListingCardProps> = ({
@@ -24,8 +26,10 @@ const MyListingCard: React.FC<MyListingCardProps> = ({
     condition,
     category,
     createdAt,
+    sold,
     onEdit,
-    onDelete
+    onDelete,
+    onToggleSold
 }
 
 ) => {
@@ -48,9 +52,10 @@ const MyListingCard: React.FC<MyListingCardProps> = ({
 
     return (
 
-        <div className="my-listing-card">
-            {/* Image section */}
+        <div className={`my-listing-card ${sold ? 'sold' : ''}`}>
             <div className="my-listing-card-image">
+                {sold && <div className="sold-overlay">Sold</div>}
+                
                 {image ? (
                     <img src={image} alt={title} />
                 ) : (
@@ -58,10 +63,12 @@ const MyListingCard: React.FC<MyListingCardProps> = ({
                         <span>📦</span>
                     </div>
                 )}
-                {category && <span className="my-listing-card-category">{category}</span>}
+                
+                {category && (
+                    <div className="my-listing-card-category">{category}</div>
+                )}
             </div>
 
-            {/* Content section */}
             <div className="my-listing-card-content">
                 <h3 className="my-listing-card-title">{title}</h3>
                 <p className="my-listing-card-description">{description}</p>
@@ -74,13 +81,20 @@ const MyListingCard: React.FC<MyListingCardProps> = ({
                 </div>
 
                 <div className="my-listing-card-footer">
-                    <span className="my-listing-card-price">{price}</span>
-                    <div className="action-buttons">
-                        <button onClick={onEdit} className="edit-btn">
-                            ✏️ Edit
+                    <div className="my-listing-card-price">{price}</div>
+                    
+                    <div className="action-buttons-with-sold">
+                        <button
+                            className={`sold-toggle-btn ${sold ? 'mark-available' : ''}`}
+                            onClick={onToggleSold}
+                        >
+                            {sold ? '✓ Sold' : 'Mark Sold'}
                         </button>
-                        <button onClick={onDelete} className="delete-btn">
-                            🗑️ Delete
+                        <button className="edit-btn" onClick={onEdit}>
+                           ✏️ Edit
+                        </button>
+                        <button className="delete-btn" onClick={onDelete}>
+                           🗑️ Delete
                         </button>
                     </div>
                 </div>

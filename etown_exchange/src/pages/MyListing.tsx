@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/authContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { collection, query, where, getDocs, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, orderBy, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import { db, storage } from '../firebase/firebaseConfig';
 import MyListingCard from '../components/MyListingCard';
@@ -20,15 +20,35 @@ const MyListing: React.FC = () => {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [listingToDelete, setListingToDelete] = useState<Listing | null>(null);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [showSoldItems, setShowSoldItems] = useState(false);
+
+    // filter listings based on sold items
+    const filteredListings = useMemo(() => {
+        if (!showSoldItems) {
+            return listings.filter(listing => !listing.sold); // Show only active
+        }
+        return listings;
+    }, [listings, showSoldItems]);
 
     // calculate total price
     const totalPrice = useMemo(() => {
-        return listings.reduce((total, listing) => {
-            const priceWithoutDollar = listing.price.replace("$", "");
-            const priceAsNumber = Number(priceWithoutDollar);
-            return total + priceAsNumber;
-        }, 0);
+        return listings
+            .filter(listing => !listing.sold)
+            .reduce((total, listing) => {
+                const priceWithoutDollar = listing.price.replace("$", "");
+                const priceAsNumber = Number(priceWithoutDollar);
+                return total + priceAsNumber;
+            }, 0);
     }, [listings]);
+
+    // count active listings vs sold listings
+    const activeListingsCount = useMemo(() => {
+        return listings.filter(listing => !listing.sold).length;
+    }, [listings])
+
+    const soldListingsCount = useMemo(() => {
+        return listings.filter(listing => listing.sold).length;
+    }, [listings])
 
     // fetch individual listings
     useEffect(() => {
@@ -61,6 +81,27 @@ const MyListing: React.FC = () => {
         };
         fetchMyListings();
     }, [currentUser]);
+
+    // sold status
+    const handleToggleSold = async (listingId: string, currentSoldStatus: boolean) => {
+        try {
+            const listingDocRef = doc(db, 'listings', listingId);
+            await updateDoc(listingDocRef, {
+                sold: !currentSoldStatus
+            });
+
+            setListings(currentListings =>
+                currentListings.map(listing =>
+                    listing.id === listingId
+                        ? { ...listing, sold: !currentSoldStatus }
+                        : listing
+                )
+            );
+        } catch (error) {
+            console.error('Error updating sold status:', error);
+            alert('Failed to update listing status. Please try again');
+        }
+    }
 
     // delete button click
     const handleDeleteClick = (listing: Listing) => {
@@ -121,8 +162,12 @@ const MyListing: React.FC = () => {
                     </div>
                     <div className="stats-row">
                         <div className="stat-item">
-                            <span className="stat-number">{listings.length}</span>
+                            <span className="stat-number">{activeListingsCount}</span>
                             <span className="stat-label">Active Listings</span>
+                        </div>
+                        <div className="stat-item">
+                            <span className="stat-number">{soldListingsCount}</span>
+                            <span className="stat-label">Sold Items</span>
                         </div>
                         <div className="stat-item">
                             <span className="stat-number">${totalPrice}</span>
@@ -130,7 +175,23 @@ const MyListing: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <h1>My Listings</h1>
+
+                {/* filter toggle */}
+                <div className="listings-header">
+                    <h1>My Listings</h1>
+                    <div className="filter-toggle">
+                        <label className="toggle-switch">
+                            <input
+                                type="checkbox"
+                                checked={showSoldItems}
+                                onChange={() => setShowSoldItems(!showSoldItems)}
+                            />
+                            <span className="toggle-slider"></span>
+                        </label>
+                        <span className="toggle-label">Show sold items</span>
+                    </div>
+                </div>
+
                 {/* loading state */}
                 {loading && (
                     <div className="loading-state">
@@ -151,9 +212,9 @@ const MyListing: React.FC = () => {
                 )}
 
                 {/* has listings */}
-                {!loading && listings.length > 0 && (
+                {!loading && filteredListings.length > 0 && (
                     <div className="listings-grid">
-                        {listings.map((listing) => (
+                        {filteredListings.map((listing) => (
                             <MyListingCard
                                 key={listing.id}
                                 id={listing.id}
@@ -164,13 +225,24 @@ const MyListing: React.FC = () => {
                                 condition={listing.condition}
                                 category={listing.category}
                                 createdAt={listing.createdAt}
+                                sold={listing.sold}
                                 onEdit={() =>
                                     navigate(`/edit-listing/${listing.id}`)}
                                 onDelete={() => handleDeleteClick(listing)}
+                                onToggleSold={() => handleToggleSold(listing.id, listing.sold || false)}
                             />
                         ))}
                     </div>
                 )}
+
+                {!loading && listings.length > 0 && filteredListings.length === 0 && (
+                    <div className='empty-state'>
+                        <span className="empty-icon">🔍</span>
+                        <h2>No {showSoldItems ? '' : 'active'} listings found</h2>
+                        <p>Toggle the filter above to see {showSoldItems ? 'active' : 'sold'} items</p>
+                    </div>
+                )}
+
                 <ConfirmationModal
                     isOpen={deleteModalOpen}
                     title="Delete Listing"

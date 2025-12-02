@@ -167,6 +167,74 @@
     transform: translateY(-2px);
 }
 
+/* ADD THESE STYLES TO YOUR EXISTING MyListingCard.css */
+
+/* Sold State Styling */
+.my-listing-card.sold {
+    opacity: 0.8;
+}
+
+.my-listing-card.sold .my-listing-card-image img {
+    filter: grayscale(40%) brightness(0.95);
+}
+
+/* Sold Overlay Badge */
+.sold-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #E1261C;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(225, 38, 28, 0.4);
+    text-transform: uppercase;
+}
+
+/* Mark as Sold Button */
+.sold-toggle-btn {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    background-color: #3DB5E6;
+    color: white;
+}
+
+.sold-toggle-btn:hover {
+    background-color: #2a9ac7;
+    transform: translateY(-2px);
+}
+
+/* When item is sold - button shows "✓ Sold" */
+.sold-toggle-btn.mark-available {
+    background-color: #6b7280;
+}
+
+.sold-toggle-btn.mark-available:hover {
+    background-color: #4b5563;
+}
+
+/* Update action buttons to include sold toggle */
+.action-buttons-with-sold {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+}
+
+
 @media (max-width: 768px){
      .my-listing-card-image {
         height: 180px;
@@ -182,5 +250,9 @@
     
     .action-buttons {
         flex-direction: column;
+    }
+
+    .action-buttons-with-sold {
+        grid-template-columns: 1fr;
     }
 }

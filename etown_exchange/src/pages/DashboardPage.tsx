@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import ItemCard from '../components/ItemCard';
 import Footer from '../components/Footer';
 import './styles/DashboardPage.css';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, where } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { Listing } from '../types/listing';
 
@@ -19,22 +19,25 @@ const DashboardPage: React.FC = () => {
     // fetch listing from firestore
     useEffect(() => {
         const fetchListings = async () => {
+            setLoading(true);
             try {
-                const listingsRef = collection(db, 'listings');
-                const q = query(listingsRef, orderBy('createdAt', 'desc'));
+                const collectionRef = collection(db, 'listings');
+                const q = query(collectionRef, orderBy('createdAt', 'desc'));
+
                 const querySnapshot = await getDocs(q);
 
                 const fetchedListings: Listing[] = [];
                 querySnapshot.forEach((doc) => {
-                    fetchedListings.push({
-                        id: doc.id,
-                        ...doc.data()
-                    } as Listing);
+                    const listingData = { id: doc.id, ...doc.data() } as Listing;
+                    // Filter out sold items
+                    if (!listingData.sold) {
+                        fetchedListings.push(listingData);
+                    }
                 });
 
                 setListings(fetchedListings);
             } catch (error) {
-                console.error('Error fetching listings:', error);
+                console.log('Error fetching listings:', error);
             } finally {
                 setLoading(false);
             }

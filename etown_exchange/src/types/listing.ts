@@ -11,4 +11,5 @@ export interface Listing {
     seller?: string;
     userId: string;
     createdAt: Timestamp;
+    sold?: boolean;
 }
