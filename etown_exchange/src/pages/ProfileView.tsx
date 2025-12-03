@@ -116,10 +116,12 @@ const ProfileView: React.FC = () => {
                         </h1>
                         <p className="profile-email">{profile.email}</p>
                         <p className="member-since">
-                            Member since {profile.createdAt?.toDate().toLocaleDateString('en-US', {
-                                month: 'long',
-                                year: 'numeric'
-                            })}
+                            Member since: {" "}
+                            {currentUser?.metadata.creationTime &&
+                                new Date(currentUser.metadata.creationTime).toLocaleDateString("en-US", {
+                                    month: "long",
+                                    year: "numeric",
+                                })}
                         </p>
 
                         <Button
