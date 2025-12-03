@@ -277,9 +277,12 @@ const ItemDetailPage: React.FC = () => {
                                         year: 'numeric'
                                     })}
                                 </p>
-                                {seller.preferredMeetingLocation && (
+                                {(seller.preferredMeetingLocation || seller.customMeetingLocation) && (
                                     <p className="seller-location">
-                                        📍Preferred meeting: {seller.preferredMeetingLocation}
+                                        📍Preferred meeting: {' '}
+                                        {seller.preferredMeetingLocation === 'Other' && seller.customMeetingLocation
+                                            ? seller.customMeetingLocation
+                                            : seller.preferredMeetingLocation}
                                     </p>
                                 )}
                                 {seller.bio && (

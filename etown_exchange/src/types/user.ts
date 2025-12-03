@@ -10,6 +10,7 @@ export interface UserProfile {
     instagramHandle?: string;
     snapchatHandle?: string;
     preferredMeetingLocation?: string;
+    customMeetingLocation?: string;
     showLastName: boolean;
     showInstagram: boolean;
     showSnapchat: boolean;

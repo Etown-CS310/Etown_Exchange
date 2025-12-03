@@ -25,6 +25,7 @@ const EditProfile: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [profileExists, setProfileExists] = useState(false);
+    const [customLocation, setCustomLocation] = useState('');
     const navigate = useNavigate();
     const { currentUser } = useAuth();
 
@@ -52,6 +53,7 @@ const EditProfile: React.FC = () => {
                     setShowInstagram(data.showInstagram || false);
                     setShowSnapchat(data.showSnapchat || false);
                     setProfileExists(true);
+                    setCustomLocation(data.customMeetingLocation || '');
                 } else {
                     setProfileExists(false);
                 }
@@ -120,6 +122,7 @@ const EditProfile: React.FC = () => {
                 instagramHandle: cleanInstagram,
                 snapchatHandle: cleanSnapchat,
                 preferredMeetingLocation: preferredLocation,
+                customMeetingLocation:preferredLocation === 'Other' ? customLocation : '',
                 bio: bio,
                 showLastName: showLastName,
                 showInstagram: showInstagram,
@@ -290,6 +293,17 @@ const EditProfile: React.FC = () => {
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
+
+                            {/* text input when other is selected */}
+                            {preferredLocation === 'Other' && (
+                                <div className="form-group">
+                                    <label>Specify Location</label>
+                                    <input 
+                                        type="text"
+                                        value={customLocation}
+                                        onChange={(e) => setCustomLocation(e.target.value)}/>
+                                </div>
+                            )}
                         </div>
 
                         {/* privacy settings */}

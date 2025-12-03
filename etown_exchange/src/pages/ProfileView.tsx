@@ -168,12 +168,16 @@ const ProfileView: React.FC = () => {
                     </div>
 
                     {/* Meeting Preferences */}
-                    {profile.preferredMeetingLocation && (
+                    {(profile.preferredMeetingLocation  || profile.customMeetingLocation)&& (
                         <div className="detail-card">
                             <h2>Meeting Preferences</h2>
                             <div className="meeting-location">
                                 <span className="location-icon">📍</span>
-                                <span>{profile.preferredMeetingLocation}</span>
+                                <span>
+                                    {profile.preferredMeetingLocation === 'Other' && profile.customMeetingLocation
+                                        ? profile.customMeetingLocation
+                                        : profile.preferredMeetingLocation}
+                                </span>
                             </div>
                         </div>
                     )}
