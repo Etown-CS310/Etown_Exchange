@@ -25,7 +25,7 @@ const MyListing: React.FC = () => {
     // filter listings based on sold items
     const filteredListings = useMemo(() => {
         if (!showSoldItems) {
-            return listings.filter(listing => !listing.sold); // Show only active
+            return listings.filter(listing => !listing.sold);
         }
         return listings;
     }, [listings, showSoldItems]);

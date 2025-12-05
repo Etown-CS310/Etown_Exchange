@@ -1,4 +1,3 @@
-/* Item Detail Page */
 .item-detail-page {
     min-height: 100vh;
     background-color: #f9fafb;
@@ -14,7 +13,6 @@
     flex: 1;
 }
 
-/* Loading & Error States */
 .loading-state,
 .error-state {
     text-align: center;
@@ -317,7 +315,6 @@
     background-color: #ffe600;
 }
 
-/* Owner Message */
 .owner-message {
     background: #e0f2fe;
     border-left: 4px solid #004B98;
@@ -331,7 +328,6 @@
     font-weight: 500;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .item-detail-page {
         padding-top: 70px;
@@ -410,14 +406,12 @@
     background: #fef2fe;
 }
 
-/* Header Actions Container */
 .header-actions {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-/* Favorite Button */
 .favorite-button {
     display: flex;
     align-items: center;
@@ -446,7 +440,6 @@
     transform: none;
 }
 
-/* Favorited State */
 .favorite-button.favorited {
     background: #E1261C;
     color: white;

@@ -80,7 +80,7 @@
     line-height: 1.5;
     flex-grow: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    /* -webkit-line-clamp: 2; */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -234,7 +234,7 @@
 
 
 @media (max-width: 768px){
-     .my-listing-card-image {
+    .my-listing-card-image {
         height: 180px;
     }
     

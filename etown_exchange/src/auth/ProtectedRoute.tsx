@@ -34,7 +34,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         );
     }
 
-    // If user is authenticated and verified, render the protected content
+    // If user is authenticated and verified
     return <>{children}</>;
 };
 

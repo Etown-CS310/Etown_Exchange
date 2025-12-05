@@ -1,4 +1,3 @@
-/* Profile Page Container */
 .profile-page {
     min-height: 100vh;
     background-color: #f9fafb;
@@ -7,16 +6,14 @@
     padding-top: 80px;
 }
 
-/* Profile Content - WIDER */
 .profile-content {
-    max-width: 1200px;  /* Changed from 800px */
+    max-width: 1200px;  
     margin: 0 auto;
     padding: 2rem 2rem 4rem;
     flex: 1;
     width: 100%;
 }
 
-/* Profile Header */
 .profile-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -46,31 +43,29 @@
     color: #6b7280;
 }
 
-/* Profile Form - TWO COLUMN GRID */
 .profile-form {
     background: white;
     border-radius: 16px;
     padding: 2.5rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: grid;
-    grid-template-columns: 1fr 1fr;  /* TWO COLUMNS */
+    grid-template-columns: 1fr 1fr;  /* this is to make the grid have 2 cols */
     gap: 2.5rem;
 }
 
-/* Form Sections - REMOVE BOTTOM BORDERS */
 .form-section {
-    margin-bottom: 0;  /* Changed from 2.5rem */
-    padding-bottom: 0;  /* Changed from 2.5rem */
-    border-bottom: none;  /* Removed */
+    margin-bottom: 0;  
+    padding-bottom: 0;  
+    border-bottom: none;  
 }
 
 .form-section h2 {
-    font-size: 1.25rem;  /* Slightly smaller */
+    font-size: 1.25rem;  
     font-weight: 600;
     color: #0A2240;
     margin: 0 0 1.5rem 0;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid #004B98;  /* Underline instead */
+    border-bottom: 2px solid #004B98; 
 }
 
 .section-description {
@@ -79,7 +74,6 @@
     margin: -0.5rem 0 1.5rem 0;
 }
 
-/* Profile Picture Section - SPANS BOTH COLUMNS */
 .form-section:first-child {
     grid-column: 1 / -1;  /* Full width */
     text-align: center;
@@ -88,7 +82,6 @@
     margin-bottom: 2rem;
 }
 
-/* Privacy Section - SPANS BOTH COLUMNS */
 .form-section:last-child {
     grid-column: 1 / -1;  /* Full width */
     padding-top: 2rem;
@@ -99,10 +92,10 @@
 /* Profile Picture Upload */
 .profile-picture-upload {
     display: flex;
-    flex-direction: row;  /* Changed to row */
+    flex-direction: row; 
     align-items: center;
     justify-content: center;
-    gap: 2rem;  /* Increased gap */
+    gap: 2rem;  
 }
 
 .picture-preview {
@@ -184,7 +177,6 @@
     display: none;
 }
 
-/* Form Groups */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -249,7 +241,7 @@
 /* Privacy Toggles - GRID LAYOUT */
 .privacy-toggles {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);  /* Two columns */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 1rem;
 }
 
@@ -279,9 +271,8 @@
     color: #0A2240;
 }
 
-/* Form Actions - SPANS BOTH COLUMNS */
 .form-actions {
-    grid-column: 1 / -1;  /* Full width */
+    grid-column: 1 / -1; 
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid #e5e7eb;
@@ -313,10 +304,9 @@
     transform: none;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     .profile-form {
-        grid-template-columns: 1fr;  /* Single column on tablets */
+        grid-template-columns: 1fr; 
         gap: 2rem;
     }
     
@@ -326,7 +316,7 @@
     }
     
     .privacy-toggles {
-        grid-template-columns: 1fr;  /* Single column */
+        grid-template-columns: 1fr; 
     }
 }
 

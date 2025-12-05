@@ -1,6 +1,3 @@
-/* ADD THESE STYLES TO YOUR EXISTING DashboardPage.css */
-
-/* Pagination Controls */
 .pagination-controls {
     display: flex;
     justify-content: space-between;
@@ -13,7 +10,6 @@
     gap: 1rem;
 }
 
-/* Pagination Info Section */
 .pagination-info {
     display: flex;
     align-items: center;

@@ -1,12 +1,10 @@
-/* Page Container */
 .my-listings-page {
     min-height: 100vh;
     background-color: #f9fafb;
     display: flex;
     flex-direction: column;
-    padding-top: 80px;  /* Space for navbar */
+    padding-top: 80px; 
 }
-
 
 .my-listings-content {
     max-width: 1400px;
@@ -45,10 +43,17 @@
     color: #6b7280;
 }
 
-/* Stats Row */
+/* Stats Row
 .stats-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+} */
+
+/* Update stats to show 3 items */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
@@ -143,14 +148,11 @@
     box-shadow: 0 4px 12px rgba(225, 38, 28, 0.3);
 }
 
-/* Listings Grid */
 .listings-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
 }
-
-/* ADD THESE STYLES TO YOUR EXISTING MyListing.css */
 
 /* Listings Header with Filter Toggle */
 .listings-header {
@@ -231,12 +233,7 @@
     background-color: #003d7a;
 }
 
-/* Update stats to show 3 items */
-.stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -277,7 +274,6 @@
     }
 }
 
-/* Responsive Stats */
 @media (max-width: 640px) {
     .my-listings-content {
         padding: 5rem 1rem 2rem;

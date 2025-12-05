@@ -44,12 +44,16 @@
     background-color: #e0f2fe;
 }
 
-.navbar-right{
+/* .navbar-right{
     display: flex;
     align-items: center;
     gap: 1.5rem
+} */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
-
 .sign-out-btn{
     background-color: #e1261c;
     color: white;
@@ -68,9 +72,6 @@
     box-shadow: 0 4px 12px;
 }
 
-/* ADD THESE STYLES TO YOUR EXISTING Navbar.css */
-
-/* Profile Icon Button */
 .profile-icon-btn {
     width: 44px;
     height: 44px;
@@ -105,12 +106,6 @@
     filter: brightness(0) invert(1);
 }
 
-/* Adjust navbar-right spacing */
-.navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
 
 @media (max-width: 768px){
     .navbar{
@@ -125,7 +120,7 @@
         display: none;
     }
 
-     .profile-icon-btn {
+    .profile-icon-btn {
         width: 40px;
         height: 40px;
         margin: 0 0.5rem;

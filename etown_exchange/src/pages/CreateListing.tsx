@@ -48,7 +48,7 @@ const CreateListing: React.FC = () => {
 
         // Upload image if exists
         if (image) {
-            // Require authentication for uploads (storage rules often require auth)
+            // Require authentication for uploads
             if (!currentUser) {
                 throw new Error('You must be signed in to upload images.');
             }
