@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ItemCard from '../components/ItemCard';
 import Footer from '../components/Footer';
+import Pagination from '../components/Pagination';
 import './styles/DashboardPage.css';
-import { collection, getDocs, query, orderBy, where } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { Listing } from '../types/listing';
 
@@ -15,6 +16,9 @@ const DashboardPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     // fetch listing from firestore
     useEffect(() => {
@@ -53,6 +57,18 @@ const DashboardPage: React.FC = () => {
 
         return matchesSearch && matchesCategory;
     });
+
+    // Calculate current page listings
+    const currentListings = useMemo(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return filteredListings.slice(startIndex, endIndex);
+    }, [filteredListings, currentPage, itemsPerPage]);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, selectedCategory, itemsPerPage]);
 
     return (
         <div className="dashboard-page">
@@ -148,11 +164,24 @@ const DashboardPage: React.FC = () => {
                         </button>
                     </div>
                 </div>
+                
+                {/* Pagination Controls - top*/}
+                {!loading && filteredListings.length > 0 && (
+                    <Pagination
+                        currentPage={currentPage}
+                        totalItems={filteredListings.length}
+                        itemsPerPage={itemsPerPage}
+                        onPageChange={setCurrentPage}
+                        onItemsPerPageChange={setItemsPerPage}
+                    />
+                )}
+
+                 
 
                 {/* Listings Grid */}
-                {!loading && filteredListings.length > 0 && (
+                {!loading && currentListings.length > 0 && (
                     <div className="listings-grid">
-                        {filteredListings.map((listing) => (
+                        {currentListings.map((listing) => (
                             <ItemCard
                                 key={listing.id}
                                 id={listing.id}
@@ -167,6 +196,17 @@ const DashboardPage: React.FC = () => {
                             />
                         ))}
                     </div>
+                )}
+
+                {/* Pagination Controls - Bottom */}
+                {!loading && filteredListings.length > 0 && (
+                    <Pagination
+                        currentPage={currentPage}
+                        totalItems={filteredListings.length}
+                        itemsPerPage={itemsPerPage}
+                        onPageChange={setCurrentPage}
+                        onItemsPerPageChange={setItemsPerPage}
+                    />
                 )}
 
                 {/* no results state */}

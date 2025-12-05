@@ -1,0 +1,176 @@
+/* ADD THESE STYLES TO YOUR EXISTING DashboardPage.css */
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    margin: 1.5rem 0;
+    border-top: 2px solid #e5e7eb;
+    border-bottom: 2px solid #e5e7eb;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Pagination Info Section */
+.pagination-info {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.showing-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Items Per Page Dropdown */
+.items-per-page {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.items-per-page label {
+    font-size: 0.875rem;
+    color: #0A2240;
+    font-weight: 600;
+}
+
+.items-per-page-select {
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #004B98;
+    border-radius: 6px;
+    background: white;
+    color: #0A2240;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.items-per-page-select:hover {
+    background: #f0f9ff;
+}
+
+.items-per-page-select:focus {
+    outline: none;
+    border-color: #3DB5E6;
+    box-shadow: 0 0 0 3px rgba(61, 181, 230, 0.1);
+}
+
+/* Pagination Buttons Section */
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.page-btn {
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 2px solid #004B98;
+    color: #004B98;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #004B98;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Page Numbers */
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.page-number {
+    min-width: 40px;
+    height: 40px;
+    padding: 0.5rem;
+    background: white;
+    border: 2px solid #e5e7eb;
+    color: #0A2240;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-number:hover {
+    border-color: #004B98;
+    background: #f0f9ff;
+}
+
+.page-number.active {
+    background: #004B98;
+    color: white;
+    border-color: #004B98;
+}
+
+.page-ellipsis {
+    padding: 0 0.5rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pagination-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pagination-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .pagination-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page-numbers {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page-btn {
+        flex: 1;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-number {
+        min-width: 36px;
+        height: 36px;
+        font-size: 0.75rem;
+    }
+
+    .pagination-buttons {
+        width: 100%;
+    }
+}
