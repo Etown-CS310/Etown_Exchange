@@ -157,10 +157,22 @@ const DashboardPage: React.FC = () => {
                             Electronics
                         </button>
                         <button
-                            onClick={() => setSelectedCategory('Sports')}
-                            className={`filter-btn ${selectedCategory === 'Sports' ? 'active' : ''}`}
+                            onClick={() => setSelectedCategory('Stationaries')}
+                            className={`filter-btn ${selectedCategory === 'Stationaries' ? 'active' : ''}`}
                         >
-                            Sports
+                            Stationaries
+                        </button>
+                        <button
+                            onClick={() => setSelectedCategory('Dorm Essentials')}
+                            className={`filter-btn ${selectedCategory === 'Dorm Essentials' ? 'active' : ''}`}
+                        >
+                            Dorm Essentials
+                        </button>
+                        <button
+                            onClick={() => setSelectedCategory('Clothing')}
+                            className={`filter-btn ${selectedCategory === 'Clothing' ? 'active' : ''}`}
+                        >
+                            Clothing
                         </button>
                     </div>
                 </div>

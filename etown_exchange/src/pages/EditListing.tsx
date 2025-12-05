@@ -242,7 +242,7 @@ const EditListing: React.FC = () => {
                                     <option value="Furniture">Furniture</option>
                                     <option value="Electronics">Electronics</option>
                                     <option value="Clothing">Clothing</option>
-                                    <option value="Sports">Sports & Recreation</option>
+                                    <option value="Stationaries">Stationaries</option>
                                     <option value="Dorm Essentials">Dorm Essentials</option>
                                     <option value="Other">Other</option>
                                 </select>
