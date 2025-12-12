@@ -47,7 +47,8 @@ It allows users to create accounts, post listings with images and prices, and co
 ### Prerequisites
 - Node.js   
 - npm or yarn  
-- Firebase project set up with Authentication, Firestore, and Storage enabled  
+- Firebase project set up with Authentication, Firestore, and Storage enabled
+- Elizabethtown College account
 
 ### Installation
 1. Clone the repo:
